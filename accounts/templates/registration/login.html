@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% block content %}
+<title>Log in</title>
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+{% if user.is_authenticated %}
+<p>Your account doesn't have access to this page. To proceed,
+  please login with an account that has access.</p>
+{% else %}
+<p>Please login to see this page.</p>
+{% endif %}
+{% endif %}
+<div class="container" style="padding-top: 15%;">
+  <div class="row justify-content-around">
+    <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12">
+    
+      <div class="container">
+        <form action="" method="post">
+          {% csrf_token %}
+         
+          {% bootstrap_form form %}
+          <br>
+         
+          {% bootstrap_button "login" button_type="submit" button_class="btn-primary" %}
+          <input type="hidden" name="next" value="{{ next }}" />
+          <a class="nav-item btn btn-light" href="{% url 'accounts:signup' %}" >Sign up </a>
+        </form>
+        <br>
+        <br>
+        <p><a class="btn btn-light" href="{% url 'accounts:password_reset' %}">Lost password?</a></p>
+       
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

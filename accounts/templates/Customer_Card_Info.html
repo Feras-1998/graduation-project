@@ -1,0 +1,25 @@
+{% load static %} {% block profile %}
+
+<div class="bd-example">
+    <div class="card" style="width: 18rem">
+    
+        <img src= "{{ profile.image.url }}" class="img-fluid">
+
+        <div class="card-body">
+            <h5 class="card-title">{{ profile }}</h5>
+            <p class="card-text"></p>
+            <div class="list-group-item"><b>address :</b>{{ profile.address }}</div>
+            <div class="list-group-item"><b>join_at :</b>{{ profile.join_at }}</div>
+            <div class="list-group-item">
+                <b>country :</b>{{ profile.country.name }}
+            </div>
+            <div class="list-group-item">
+                <b> last login :</b>{{ profile.user.last_login }}
+            </div>
+
+            <a class="btn btn-primary zoom_in" href="{% url 'accounts:Customer_Edit_Profile_View' %}" role="button">Edit
+                Profile</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
